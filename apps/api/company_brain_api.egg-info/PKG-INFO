@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: company-brain-api
+Version: 0.1.0
+Requires-Python: >=3.12
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn[standard]
+Requires-Dist: pydantic-settings
+Requires-Dist: sqlalchemy[asyncio]>=2.0
+Requires-Dist: asyncpg
+Requires-Dist: alembic
+Requires-Dist: pgvector
+Requires-Dist: redis>=5
+Requires-Dist: arq
+Requires-Dist: pyjwt
+Requires-Dist: pwdlib[argon2]
+Requires-Dist: python-multipart
+Requires-Dist: boto3
+Requires-Dist: pymupdf
+Requires-Dist: tiktoken
+Requires-Dist: httpx
+Requires-Dist: rapidfuzz
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"

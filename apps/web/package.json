@@ -1,0 +1,27 @@
+{
+  "name": "company-brain-web",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "gen:api": "openapi-typescript http://localhost:8000/openapi.json -o lib/api-types.ts"
+  },
+  "dependencies": {
+    "next": "^15",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-markdown": "^9",
+    "react-pdf": "^9"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "openapi-typescript": "^7",
+    "typescript": "^5",
+    "eslint": "^9",
+    "eslint-config-next": "^15"
+  }
+}

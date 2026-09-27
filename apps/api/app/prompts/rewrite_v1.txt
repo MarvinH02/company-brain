@@ -1,0 +1,3 @@
+TODO(M4): prompt that turns a follow-up question + recent history into ONE
+standalone search query. Output only the query. If the question is already
+standalone, return it unchanged.

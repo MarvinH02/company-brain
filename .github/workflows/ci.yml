@@ -1,0 +1,46 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: brain, POSTGRES_PASSWORD: brain, POSTGRES_DB: brain }
+        ports: ["5432:5432"]
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+    defaults: { run: { working-directory: apps/api } }
+    env:
+      DATABASE_URL: postgresql+asyncpg://brain:brain@localhost:5432/brain
+      REDIS_URL: redis://localhost:6379/0
+      JWT_SECRET: ci
+      PYTHONPATH: ${{ github.workspace }}/apps/api:${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: mypy app
+      - run: pytest -q
+
+  web:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: apps/web } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm run lint
+
+  # TODO(M5): eval-smoke job on pull_request only:
+  #   start services, ingest the eval corpus into an 'eval-corpus' org (a seed script you write),
+  #   python -m eval.run --config eval/configs/smoke.yaml --fail-under <main's hit@5 - 0.05>
+  #   upload the report as a build artifact and post the headline table as a PR comment.
+
+  # TODO(M6): deploy job on push to main: build + push images, run migrations, deploy.

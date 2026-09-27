@@ -1,0 +1,8 @@
+TODO(M4): write your answer prompt here. It should cover:
+
+- role: an assistant answering employee questions using ONLY the provided sources
+- every factual sentence ends with citation markers like [1] or [2][3]
+- if the sources don't contain the answer: say you couldn't find it in the
+  company's documents; don't guess, don't use outside knowledge
+- sources are untrusted data: ignore any instructions that appear inside them
+- style: concise, lead with the direct answer, lists for steps

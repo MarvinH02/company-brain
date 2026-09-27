@@ -1,0 +1,7 @@
+name: hybrid
+dataset: eval/datasets/company_v1.jsonl
+org_slug: eval-corpus          # org holding the ingested eval corpus
+retrieval: {mode: hybrid, k: 6}
+generation: {enabled: true, provider: null, model: null, prompt_version: answer_v1}
+judge: {provider: null, model: null, prompt_version: judge_v1}   # prefer a different model than generation
+metrics_k: [1, 5, 10]

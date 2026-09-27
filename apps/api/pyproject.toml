@@ -1,0 +1,39 @@
+[project]
+name = "company-brain-api"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]",
+  "pydantic-settings",
+  "sqlalchemy[asyncio]>=2.0",
+  "asyncpg",
+  "alembic",
+  "pgvector",
+  "redis>=5",
+  "arq",
+  "pyjwt",
+  "pwdlib[argon2]",
+  "python-multipart",
+  "boto3",
+  "pymupdf",
+  "tiktoken",
+  "httpx",
+  "rapidfuzz",      # fuzzy quote matching in eval
+  "pyyaml",
+  # add the provider SDKs you choose: openai, anthropic, voyageai, cohere,
+  # sentence-transformers (local reranker / embedder)
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "ruff", "mypy"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.setuptools.packages.find]
+include = ["app*"]

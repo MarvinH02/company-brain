@@ -1,0 +1,9 @@
+TODO(M5): judge prompt. Inputs: question, reference answer, candidate answer,
+retrieved sources. Output strict JSON:
+
+{"correctness": 1-5, "faithful": true|false, "abstained": true|false, "reason": "..."}
+
+Define every score level in words (5 = fully correct and complete, 3 = partially
+correct / missing key detail, 1 = wrong or contradicts the reference). Faithful =
+every claim is supported by the sources. Abstained = the answer declines / says
+the information isn't available.
